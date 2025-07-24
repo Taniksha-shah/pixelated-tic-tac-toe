@@ -1,31 +1,41 @@
+html {
+    cursor: url('img/tile_0134.png') 16 16, auto;
+}
 body {
-    background-color: rgb(88, 18, 99);
+    background-color: #FFF8DC;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Press Start 2P';
+    font-family: 'Press Start 2P', monospace, Arial;
+    overflow: hidden;
+    
 }
 .game-container {
     display: flex;
     flex-direction: column;
     margin-top: 150px;
 }
-.game-title {
-    font-size: 25px;
+.game-title,
+.turn-text {
+    font-size: 28px;
     font-family: 'Press Start 2P', monospace, Arial;
-    color: rgb(255, 255, 134);
+    color: #3C3C3C;
     text-align: center;
-    padding-bottom: 75px;
+    padding-bottom: 18px;
+}
+.turn-text {
+    font-size: 22px;
+    color:#6e6e6e;
 }
 .game-grid-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 10px;
     margin: 0;
-    width: 308px;
+    width: 360px;
 }
 .row {
     display: flex;
@@ -35,11 +45,40 @@ body {
     width: 308px;
 }
 .col {
-    background-color: rgb(255, 255, 134);
+    background-color: rgb(255, 247, 184);
     height: 100px;
     width: 100px;
+    margin: 3px;
     border: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: yellow;
+    border-color: #ffeb37;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Press Start 2P', monospace, Arial;
+}
+.score {
+    padding: 4px;
+    color:#3C3C3C;
+    text-align: center;
+
+}
+.score-board {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 308px;
+    height: 75px;
+    border-radius: 5px;
+    padding-top: 6px;
+}
+.player-avatar {
+    width: 75px;
+    height: 75px;
 }

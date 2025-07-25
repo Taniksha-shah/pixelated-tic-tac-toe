@@ -24,7 +24,11 @@
 ├── script.js
 ├── assets/
 │   └── cursor.png
-
+│   └── defaultCursor.png
+│   └── player1default.png
+│   └── player1win.png
+│   └── player2default.png
+│   └── player2win.png
 ```
 ---
 

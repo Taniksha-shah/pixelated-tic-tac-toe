@@ -1,20 +1,17 @@
 html {
-    cursor: url('assets/cursor.png') 16 16, auto;
+    cursor: url('assets/generalCursor.png') 16 16, auto;
 }
 body {
     background-color: #FFF8DC;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-family: 'Press Start 2P', monospace, Arial;
     overflow: hidden;
-    
 }
 .game-container {
     display: flex;
     flex-direction: column;
-    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 125px;
 }
 .game-title,
 .turn-text {
@@ -26,7 +23,7 @@ body {
 }
 .turn-text {
     font-size: 22px;
-    color:#6e6e6e;
+    color:#FF6F61;
 }
 .game-grid-container {
     display: flex;
@@ -35,7 +32,8 @@ body {
     align-items: center;
     padding: 10px;
     margin: 0;
-    width: 360px;
+    width: 380px;
+    cursor: url('assets/cursor.png') 16 16, auto;
 }
 .row {
     display: flex;
@@ -74,11 +72,31 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 308px;
-    height: 75px;
+    height: 80px;
     border-radius: 5px;
-    padding-top: 6px;
+    margin-top: 5px;
+    padding-bottom: 5px;
 }
 .player-avatar {
+    padding: 7px;
+}
+.player-avatar,
+.player-avatar img {
     width: 75px;
     height: 75px;
 }
+
+.settings-icon {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 12px;
+    height: 20px;
+    width: 20px;
+}
+
+.settings-icon img {
+    height: 20px;
+    width: 20px;
+}
+

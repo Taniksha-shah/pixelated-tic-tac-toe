@@ -1,6 +1,3 @@
-﻿# tic-tac-toe-game
----
-
 ```markdown
 # 🎮 Pixelated Tic-Tac-Toe
 

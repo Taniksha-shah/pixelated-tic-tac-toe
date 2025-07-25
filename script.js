@@ -3,9 +3,8 @@
 
 /*
 1.function to handle turns
-2.function to keep track of scores
-3.function for checks for win
-4.function for onclick events
+2.function for checks for win
+3.function for onclick events
 */
 
 let currentPlayer = 'X';

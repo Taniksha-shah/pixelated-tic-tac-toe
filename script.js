@@ -3,8 +3,8 @@
 
 /*
 1.function to handle turns
-2.function for checks for win
-3.function for onclick events
+2.function to check for win
+3.functions for onclick events
 */
 
 let currentPlayer = 'X';
@@ -34,16 +34,44 @@ function handleTileClick(col) {
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         updateTurntext(currentPlayer);
     }
+
+    if (!gameOver && currentPlayer === 'O') {
+        setTimeout(() => {
+            makeComputermove();
+        }, 500); // adds 500ms delay for realism
+    }
 }
+
+function makeComputermove() {
+    let tiles = document.querySelectorAll(".col");
+
+    for (let i = 0; i < tiles.length; i++) {
+        if (tiles[i].textContent === "") {
+            tiles[i].textContent = 'O';
+            tiles[i].style.color = "#6B5B95";
+            gameboard[i] = 'O';  // update game state
+
+            checkWin('O', gameboard); // pass computer as currentPlayer
+            break;
+        }
+    }
+    
+
+    if (!gameOver) {
+        currentPlayer = 'X';
+        updateTurntext(currentPlayer);
+    }
+}
+
 
 function updateTurntext(currentPlayer) {
     let turn = document.querySelector(".turn-text");
     if(currentPlayer === 'X') {
-        turn.textContent = "Player-1's turn!";
+        turn.textContent = "Your turn!";
         turn.style.color = "#FF6F61";
     }
     else {
-        turn.textContent = "Player-2's turn!";
+        turn.textContent = "Computer's turn!";
         turn.style.color = "#6B5B95";
     }
 }
@@ -102,3 +130,4 @@ function checkWin(currentPlayer, gameboard) {
         }
     }
 }
+

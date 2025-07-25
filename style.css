@@ -100,3 +100,23 @@ body {
     width: 20px;
 }
 
+button {
+    font-family: 'Press Start 2P', monospace, Arial;
+    font-size: 16px;
+    border: solid;
+    border-width: 2px;
+    border-color: #787878;
+    border-radius: 4px;
+    background-color: white;
+    color:#FF6F61;
+    padding: 20px;
+    margin-top: 50px;
+    width: 370px;
+    margin: 17px;
+    cursor: url('assets/cursor.png') 16 16, auto;
+}
+a {
+    text-decoration: none;
+    color:#FF6F61;
+    cursor: url('assets/cursor.png') 16 16, auto;
+}

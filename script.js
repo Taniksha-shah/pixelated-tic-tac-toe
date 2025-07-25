@@ -52,8 +52,6 @@ function updateTurntext(currentPlayer) {
 function updateGameboard(col, currentPlayer) {
     let index = Number(col.getAttribute("data-index"));
     gameboard[index] = currentPlayer;
-    console.log(gameboard);
-    console.log(index);
 
     checkWin(currentPlayer, gameboard);
 }
@@ -93,7 +91,7 @@ function checkWin(currentPlayer, gameboard) {
                 winText.textContent = "Player-2 wins!";
                 winText.style.color = "#6B5B95";
                 scoreText.textContent = "0 vs 1";
-                player1avatar.src = "assets/player2win.png";
+                player2avatar.src = "assets/player2win.png";
             }
             gameOver = true;
         }

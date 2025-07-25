@@ -19,9 +19,9 @@ tiles.forEach ( col => {
 });
 
 function handleTileClick(col) {
-    if (gameOver || col.textContent !== "") return; // ignore already-filled tiles
+    if (gameOver || col.textContent !== "") return;
 
-    col.textContent = currentPlayer; // place "X" or "O"
+    col.textContent = currentPlayer;
 
     if(currentPlayer === 'X') {
         col.style.color = "#FF6F61";
@@ -54,6 +54,13 @@ function updateGameboard(col, currentPlayer) {
     gameboard[index] = currentPlayer;
 
     checkWin(currentPlayer, gameboard);
+
+    if (!gameOver && gameboard.every(cell => cell !== "")) {
+        let winText = document.querySelector(".turn-text");
+        winText.textContent = "It's a tie!";
+        winText.style.color = "#999";
+        gameOver = true;
+    }
 }
 
 function checkWin(currentPlayer, gameboard) {
@@ -63,19 +70,18 @@ function checkWin(currentPlayer, gameboard) {
     let player2avatar = document.querySelector(".player-2-avatar");
     
     const winConditions = [
-        [0, 1, 2], // Row 1
-        [3, 4, 5], // Row 2
-        [6, 7, 8], // Row 3
-        [0, 3, 6], // Column 1
-        [1, 4, 7], // Column 2
-        [2, 5, 8], // Column 3
-        [0, 4, 8], // Diagonal 1
-        [2, 4, 6]  // Diagonal 2
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
     ];
     for (let condition of winConditions) {
         const [a, b, c] = condition;
 
-        // Check if all 3 cells are equal and not empty
         if (
             gameboard[a] &&
             gameboard[a] === gameboard[b] &&

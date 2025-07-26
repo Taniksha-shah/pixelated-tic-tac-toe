@@ -177,13 +177,13 @@ function checkWin(currentPlayer, gameboard) {
             gameboard[b] === gameboard[c]
         ) {
             if(currentPlayer === 'X') {
-                winText.textContent = "Player-1 wins!";
+                winText.textContent = "You win!";
                 winText.style.color = "#FF6F61";
                 scoreText.textContent = "1 vs 0";
                 player1avatar.src = "../assets/player1win.png";
             }
             else {
-                winText.textContent = "Player-2 wins!";
+                winText.textContent = "Computer wins!";
                 winText.style.color = "#6B5B95";
                 scoreText.textContent = "0 vs 1";
                 player2avatar.src = "../assets/player2win.png";

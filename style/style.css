@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 125px;
+    margin-top: 115px;
 }
 .game-title,
 .turn-text {
@@ -85,17 +85,17 @@ body {
     width: 75px;
     height: 75px;
 }
-
-.settings-icon {
-    display: flex;
-    flex-direction: row;
+nav {
+    height: 22px;
+}
+.settings-icon-container {
     padding: 0;
-    margin: 12px;
-    height: 20px;
-    width: 20px;
+    margin: 0;
+    height: 21px;
+    width: 21px;
 }
 
-.settings-icon img {
+.settings-icon-container img {
     height: 20px;
     width: 20px;
 }

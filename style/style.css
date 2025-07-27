@@ -14,7 +14,8 @@ body {
     margin-top: 115px;
 }
 .game-title,
-.turn-text {
+.turn-text,
+.game-title-multiplayer {
     font-size: 28px;
     font-family: 'Press Start 2P', monospace, Arial;
     color: #3C3C3C;
@@ -119,4 +120,37 @@ a {
     text-decoration: none;
     color:#FF6F61;
     cursor: url('../assets/cursor.png') 16 16, auto;
+}
+.rounds-select {
+    height: 40px; /* increase for better vertical alignment */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    gap: 10px; /* adds spacing between button and dropdown */
+    font-family: 'Press Start 2P', monospace, Arial;
+    font-size: 14px;
+    color: #3C3C3C;
+    cursor: url("../assets/cursor.png") 16 16, auto;
+}
+.rounds-select-button,
+#rounds-select-dropdown {
+    height: 30px; /* better than 20px for text visibility */
+    font-family: 'Press Start 2P', monospace, Arial;
+    font-size: 14px;
+    border: 2px solid #787878;
+    border-radius: 4px;
+    background-color: white;
+    color: #FF6F61;
+    padding: 2px 13px;
+    margin: 0;
+    cursor: url('../assets/cursor.png') 16 16, auto;
+    box-sizing: border-box;
+}
+.rounds-select-button {
+    width: 100px;
+}
+.game-title-multiplayer {
+    padding-bottom: 8px;
 }

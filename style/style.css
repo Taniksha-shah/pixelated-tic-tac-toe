@@ -154,3 +154,6 @@ a {
 .game-title-multiplayer {
     padding-bottom: 8px;
 }
+#rounds-select {
+    display: none;
+}

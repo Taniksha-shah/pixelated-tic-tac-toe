@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic-Tac-Toe Multiplayer</title>
+  <link href="../style/style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="settings-icon-container">
+      <img src="../assets/settings.png" class="settings-icon" />
+    </div>
+  </nav>
+
+  <div class="game-container">
+    <div class="game-title-multiplayer">Tic-Tac-Toe</div>
+
+    <!-- Room Info -->
+    <div class="room-info">
+      <p id="room-id-display">Room ID: <span id="room-id-text">N/A</span></p>
+      <p id="room-link-display">Shareable Link: <span id="room-link">N/A</span></p>
+      <p id="player-status">Waiting for opponent...</p>
+    </div>
+
+    <!-- Rounds Dropdown: Only visible to host -->
+    <div class="rounds-select" id="rounds-select">
+      <form id="rounds-form">
+        <label for="rounds-select-dropdown">Rounds:</label>
+        <select id="rounds-select-dropdown">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button type="submit" class="rounds-select-button">Start Game</button>
+      </form>
+    </div>
+
+    <!-- Game Grid -->
+    <div class="game-grid-container">
+      <div class="row">
+        <div class="col" data-index="0"></div>
+        <div class="col" data-index="1"></div>
+        <div class="col" data-index="2"></div>
+      </div>
+      <div class="row">
+        <div class="col" data-index="3"></div>
+        <div class="col" data-index="4"></div>
+        <div class="col" data-index="5"></div>
+      </div>
+      <div class="row">
+        <div class="col" data-index="6"></div>
+        <div class="col" data-index="7"></div>
+        <div class="col" data-index="8"></div>
+      </div>
+      <div class="score-board">
+        <div class="player-avatar">
+          <img class="player-1-avatar" src="../assets/player1default.png" />
+        </div>
+        <div class="score" id="score">0 vs 0</div>
+        <div class="player-avatar">
+          <img class="player-2-avatar" src="../assets/player2default.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script>
+    const socket = io();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomId = urlParams.get("room");
+    const isHost = !sessionStorage.getItem("joinedAsGuest");
+
+    const roomIdText = document.getElementById("room-id-text");
+    const roomLink = document.getElementById("room-link");
+    const playerStatus = document.getElementById("player-status");
+    const roundsForm = document.getElementById("rounds-form");
+    const roundsDropdown = document.getElementById("rounds-select-dropdown");
+    const roundsSelect = document.getElementById("rounds-select");
+
+    // Show room ID & link
+    if (roomId) {
+      roomIdText.textContent = roomId;
+      const link = `${window.location.origin}${window.location.pathname}?room=${roomId}`;
+      roomLink.textContent = link;
+    }
+
+    // Join the room
+    socket.emit("join-room", roomId);
+
+    // Host sees round selector
+    if (!isHost) {
+      roundsSelect.style.display = "none";
+    }
+
+    // Submit rounds and start game (host only)
+    roundsForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const rounds = parseInt(roundsDropdown.value);
+      socket.emit("start-game", { roomId, rounds });
+      roundsDropdown.disabled = true;
+      roundsForm.querySelector("button").disabled = true;
+    });
+
+    // Opponent joins
+    socket.on("player-joined", () => {
+      playerStatus.textContent = "Opponent joined!";
+    });
+
+    // Game officially starts for all players
+    socket.on("game-started", (rounds) => {
+      playerStatus.textContent = `Game started: Best of ${rounds}`;
+      roundsDropdown.disabled = true;
+      roundsForm.querySelector("button").disabled = true;
+      roundsSelect.style.display = "none";
+
+      // TODO: Enable board interactions here
+    });
+  </script>
+</body>
+</html>

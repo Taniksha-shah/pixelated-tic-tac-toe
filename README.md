@@ -43,8 +43,8 @@
 ## 📷 Screenshots
 
 
-![Tie Game Board](./assets/screenshots/tieScreenshot.png)
-![Player-1 win Game Board](./assets/screenshots/winScreenshot.png)
+![Tie Game Board](./screenshots/tieScreenshot.png)
+![Player-1 win Game Board](./screenshots/winScreenshot.png)
 
 ---
 

@@ -24,21 +24,61 @@
   </div>
 
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-  <script>
-    const socket = io();
 
-    function createPrivateRoom() {
-      socket.emit('createRoom');
-    }
+<script>
+        console.log("index.html: Script is running.");
+        const socket = io(); // Initialize socket connection on page load
 
-    socket.on('roomCreated', (roomCode) => {
-      // Redirect to the multiplayer page with the room code as query param
-      window.location.href = `game-multiplayer.html?room=${roomCode}`;
-    });
+        socket.on('connect', () => {
+            console.log("index.html: Socket.IO connected with ID:", socket.id);
+            // DO NOT EMIT 'createRoom' HERE.
+            // This is just for connection logging or setup that needs to happen once per connection.
+        });
 
-    socket.on('errorRoom', (message) => {
-      alert(message);
-    });
-  </script>
+        let roomCreationInProgress = false; // Flag to prevent multiple clicks
+
+        // THIS FUNCTION SHOULD ONLY BE CALLED BY THE BUTTON'S onclick EVENT
+        function createPrivateRoom() {
+            if (roomCreationInProgress) {
+                console.warn("index.html: Room creation already in progress. Ignoring multiple clicks/calls.");
+                return; // Exit if a room creation is already ongoing
+            }
+            roomCreationInProgress = true; // Set flag to true
+            console.log("index.html: 'Create Private Room' button clicked. Emitting 'createRoom' event...");
+            socket.emit('createRoom'); // <-- THIS IS THE ONLY PLACE THIS SHOULD BE CALLED FOR ROOM CREATION
+        }
+
+        socket.on('roomCreated', (roomCode) => {
+            console.log("index.html: 'roomCreated' event received. Room Code:", roomCode);
+            roomCreationInProgress = false; // Reset flag
+            // Redirect to game-multiplayer.html with the room code
+            window.location.href = `game-multiplayer.html?room=${roomCode}`;
+        });
+
+        // Add robust error handling
+        socket.on('roomNotFound', (message) => { // Assuming your server might send a specific 'roomNotFound' for join attempts
+            console.error("index.html: Room not found response from server:", message);
+            roomCreationInProgress = false; // Reset flag on error
+            alert("Error: " + (message || "Room not found. Please check the code or try again."));
+        });
+
+        socket.on('roomFull', (message) => {
+            console.error("index.html: Room full response from server:", message);
+            roomCreationInProgress = false; // Reset flag on error
+            alert("Error: " + (message || "Room is full."));
+        });
+
+        socket.on('error', (message) => { // Generic Socket.IO errors
+            console.error("index.html: Socket error:", message);
+            roomCreationInProgress = false; // Reset flag on error
+            alert("A network error occurred: " + message);
+        });
+
+        socket.on('disconnect', (reason) => {
+            console.log("index.html: Socket disconnected. Reason:", reason);
+            roomCreationInProgress = false; // Ensure flag is reset if disconnected
+        });
+
+    </script>
 </body>
 </html>

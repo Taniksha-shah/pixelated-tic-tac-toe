@@ -1,5 +1,5 @@
 html {
-    cursor: url('../assets/generalCursor.png') 16 16, auto;
+    cursor: url('/assets/generalCursor.png') 16 16, auto;
 }
 body {
     background-color: #FFF8DC;
@@ -34,7 +34,7 @@ body {
     padding: 10px;
     margin: 0;
     width: 380px;
-    cursor: url('../assets/cursor.png') 16 16, auto;
+    cursor: url('/assets/cursor.png') 16 16, auto;
 }
 .row {
     display: flex;
@@ -114,12 +114,12 @@ button {
     margin-top: 50px;
     width: 370px;
     margin: 17px;
-    cursor: url('../assets/cursor.png') 16 16, auto;
+    cursor: url('/assets/cursor.png') 16 16, auto;
 }
 a {
     text-decoration: none;
     color:#FF6F61;
-    cursor: url('../assets/cursor.png') 16 16, auto;
+    cursor: url('/assets/cursor.png') 16 16, auto;
 }
 .rounds-select {
     height: 40px; /* increase for better vertical alignment */
@@ -132,7 +132,7 @@ a {
     font-family: 'Press Start 2P', monospace, Arial;
     font-size: 14px;
     color: #3C3C3C;
-    cursor: url("../assets/cursor.png") 16 16, auto;
+    cursor: url("/assets/cursor.png") 16 16, auto;
 }
 .rounds-select-button,
 #rounds-select-dropdown {
@@ -145,7 +145,7 @@ a {
     color: #FF6F61;
     padding: 2px 13px;
     margin: 0;
-    cursor: url('../assets/cursor.png') 16 16, auto;
+    cursor: url('/assets/cursor.png') 16 16, auto;
     box-sizing: border-box;
 }
 .rounds-select-button {
